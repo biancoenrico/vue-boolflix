@@ -3,7 +3,8 @@ var app = new Vue({
     data: {
         resultMulti:[],
         search:'back to the future',
-        vote: 0,
+        stars:4,
+        coloredStars:[]
     },
     methods: {
         
@@ -26,8 +27,13 @@ var app = new Vue({
                     
                     this.resultMulti.forEach((element)=>{
                         element.vote_average = Math.ceil(element.vote_average / 2).toFixed();
-                        
+                        this.stars = element.vote_average
+                        console.log(this.stars);
                     })
+
+                    for(let i = 0; i == this.stars; i++){
+                        this.coloredStars.push('star')
+                    }
             })  
             this.search = '';
         },
@@ -53,6 +59,11 @@ var app = new Vue({
                 element.vote_average = Math.ceil(element.vote_average / 2).toFixed();
                 
                 })
+                console.log(this.stars);
+                for(let i = 0; i <= this.stars; i++){
+                    this.coloredStars.push(i)
+                    console.log(this.coloredStars);
+                }
 
         })
         this.search = '';

@@ -48,7 +48,11 @@
 
                 <br> 
 
-                <span>voto: {{movie.vote_average}} /10</span>
+                <span>voto: {{movie.vote_average}} /5</span>
+                <div>
+                    <i v-for="star in coloredStars" class="far fa-star"></i>
+
+                </div>
                
             </li>
         </ul>
