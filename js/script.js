@@ -11,10 +11,13 @@ var app = new Vue({
                 {
                     params:{
                         query: this.search,
+                        // backdrop_path: this.result.backdrop_path
                     }
+
                 })
+                
                 .then((response)=>{
-                    let list = response.data;
+                    list = response.data;
                     this.result = list.results;
                 })
         }

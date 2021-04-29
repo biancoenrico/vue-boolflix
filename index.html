@@ -15,20 +15,39 @@
 <body>
     
     <div id="root">
+
         <div>
-            <input type="text" v-model="search" name="" id="">
+            <input v-on:keyup.enter="searchFilm" type="text" v-model="search" name="" id="">
             <button @click="searchFilm">cerca</button>
         </div>
         <ul>
             <li v-for="movie in result">
-                {{movie.title}}
+                <span>
+                    titolo: {{movie.title}}
+                </span>
+
                 <br> 
-                <span v-if="movie.title != movie.original_title">{{movie.original_title}}<br></span>
-                {{movie.original_language}}
+
+                <span v-if="movie.title != movie.original_title">
+                    titolo originale: {{movie.original_title}}
+                    <br>
+                </span>
+
+                <span>
+                    lingua originale: {{movie.original_language}} 
+                </span>
+
+                <div class="flag">
+                    <img :src="'img/' + movie.original_language + '.svg'" alt="">
+                </div>
+
                 <br> 
-                {{movie.vote_average}}
+
+                <span>voto: {{movie.vote_average}} /10</span>
+                
                 <br>
-                <!-- <img src="movie.backdrop_path" alt="">  -->
+               
+                <img :src="'https://image.tmdb.org/t/p/w185' + movie.poster_path" alt=""> 
             </li>
         </ul>
     </div>

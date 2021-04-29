@@ -6,3 +6,8 @@
 body{
     font-family: 'Roboto', sans-serif;
 }
+.flag{
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
