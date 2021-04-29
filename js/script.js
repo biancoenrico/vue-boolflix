@@ -1,23 +1,21 @@
 var app = new Vue({
     el: '#root',
     data: {
-        resultfilm:[],
-        resultSeries:[],
-        search:''
+        resultMulti:[],
+        search:'back to the future',
+        vote: 0,
     },
     methods: {
-        find(){
-            this.searchFilm(),
-            this.searchTv()
-        },
-        searchFilm(){
+        
+        
+        searchMulti(){
         
             axios
-                .get('https://api.themoviedb.org/3/search/movie?',
+                .get('https://api.themoviedb.org/3/search/multi?',
                 
                 {
                     params:{
-                        api_key: '08103b63752bfcc4876a0aec5cc20e97',
+                        api_key:'08103b63752bfcc4876a0aec5cc20e97',
                         query: this.search,
                     }
 
@@ -26,49 +24,32 @@ var app = new Vue({
                 
                 
                 .then((response)=>{
-                    list = response.data;
-                    this.resultfilm = list.results;
+                    let list = response.data;
+                    this.resultMulti = list.results;
                 })  
 
         },
-        searchTv(){
+       
         
-
-            axios
-                .get('https://api.themoviedb.org/3/search/tv?',
-                
-                {
-                    params:{
-                        api_key: '08103b63752bfcc4876a0aec5cc20e97',
-                        query: this.search,
-                    }
-
-                })
-                
-                
-                
-                .then((response)=>{
-                    list = response.data;
-                    this.resultSeries = list.results;
-                }) 
-        }
+            
         
         
     },
     mounted(){
+       
         axios
-            .get('https://api.themoviedb.org/3/search/movie?',
-                'https://api.themoviedb.org/3/search/tv?',
+            .get('https://api.themoviedb.org/3/search/multi?',
             {
                 params:{
-                    api_key: '08103b63752bfcc4876a0aec5cc20e97',
+                    api_key:'08103b63752bfcc4876a0aec5cc20e97',
+                    query: this.search,
                 }
             })
             .then((response)=>{
-                console.log(response.data);
                 let list = response.data;
-                this.result = list.results;
-                console.log(this.result);
-            })
+                this.resultMulti = list.results;
+
+        })
+       
     },
 })

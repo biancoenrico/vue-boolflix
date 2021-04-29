@@ -11,3 +11,13 @@ body{
     display: inline-block;
     vertical-align: middle;
 }
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+li{
+    width: calc( 100% / 4);
+    margin-top: 100px;
+    list-style-type: none;
+}

@@ -17,43 +17,16 @@
     <div id="root">
 
         <div>
-            <input v-on:keyup.enter="find" type="text" v-model="search" name="" id="">
-            <button @click="find">film</button>
+            <input v-on:keyup.enter="searchMulti" type="text" v-model="search" name="" id="">
+            <button @click="searchMulti">film</button>
 
         </div>
-        <ul>
-            <li v-for="movie in resultfilm">
-                <span>
-                    titolo: {{movie.title}}
-                </span>
-
-                <br> 
-
-                <span v-if="movie.title != movie.original_title">
-                    titolo originale: {{movie.original_title}}
-                    <br>
-                </span>
-
-                <span>
-                    lingua originale: {{movie.original_language}} 
-                </span>
-
-                <div class="flag">
-                    <img :src="'img/' + movie.original_language + '.svg'" alt="">
-                </div>
-
-                <br> 
-
-                <span>voto: {{movie.vote_average}} /10</span>
-                
-                <br>
-               
-                <img :src="'https://image.tmdb.org/t/p/w185' + movie.poster_path" alt=""> 
-            </li>
-        </ul>
         
         <ul>
-            <li v-for="movie in resultSeries">
+            <li v-for="movie in resultMulti">
+                <img :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path" alt=""> 
+                <br>
+
                 <span>
                     titolo: {{movie.title}}
                 </span>
@@ -76,12 +49,10 @@
                 <br> 
 
                 <span>voto: {{movie.vote_average}} /10</span>
-                
-                <br>
                
-                <img :src="'https://image.tmdb.org/t/p/w185' + movie.poster_path" alt=""> 
             </li>
         </ul>
+
     </div>
     
     <!-- <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script> -->
