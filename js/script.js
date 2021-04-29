@@ -12,7 +12,6 @@ var app = new Vue({
         
             axios
                 .get('https://api.themoviedb.org/3/search/multi?',
-                
                 {
                     params:{
                         api_key:'08103b63752bfcc4876a0aec5cc20e97',
@@ -21,18 +20,18 @@ var app = new Vue({
 
                 })
                 
-                
-                
                 .then((response)=>{
                     let list = response.data;
                     this.resultMulti = list.results;
-                })  
-
+                    
+                    this.resultMulti.forEach((element)=>{
+                        element.vote_average = Math.ceil(element.vote_average / 2).toFixed();
+                        
+                    })
+            })  
+            this.search = '';
         },
        
-        
-            
-        
         
     },
     mounted(){
@@ -45,11 +44,17 @@ var app = new Vue({
                     query: this.search,
                 }
             })
+
             .then((response)=>{
                 let list = response.data;
                 this.resultMulti = list.results;
+                
+                this.resultMulti.forEach((element)=>{
+                element.vote_average = Math.ceil(element.vote_average / 2).toFixed();
+                
+                })
 
         })
-       
+        this.search = '';
     },
 })
