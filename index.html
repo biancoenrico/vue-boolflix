@@ -15,15 +15,20 @@
 <body>
     
     <div id="root">
+        <div>
+            <input type="text" v-model="search" name="" id="">
+            <button @click="searchFilm">cerca</button>
+        </div>
         <ul>
             <li v-for="movie in result">
                 {{movie.title}}
                 <br> 
-                <span v-if="movie.title != movie.original_title">{{movie.original_title}}</span>
-                <br>
+                <span v-if="movie.title != movie.original_title">{{movie.original_title}}<br></span>
                 {{movie.original_language}}
                 <br> 
                 {{movie.vote_average}}
+                <br>
+                <!-- <img src="movie.backdrop_path" alt="">  -->
             </li>
         </ul>
     </div>
