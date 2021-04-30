@@ -16,13 +16,13 @@ header{
     align-items: center;
 }
 header label{
-    font-size: 18px;
+    font-size: 16px;
     color: white;
     margin-right: 10px;
 }
 header input{
     margin-right: 100px;
-    padding: 10px 30px 10px 15px;
+    padding: 5px 15px 5px 15px;
     border-radius: 999px;
     background-color: #141414;
     outline: none;
@@ -31,7 +31,7 @@ header input{
     color: white;
 }
 header img{
-    width: 500px;
+    width: 200px;
 }
 .poster{
     width: 342px;
