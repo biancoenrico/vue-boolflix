@@ -22,40 +22,46 @@
 
         </div>
         
-        <ul>
-            <li v-for="movie in resultMulti">
-                <img :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path" alt=""> 
-                <br>
+        <div class="wrapper">
 
-                <span>
+            <div  v-for="movie in resultMulti" class="film">
+                <!-- immagine di copertina -->
+                <img class="poster" :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path" alt="">
+                <!-- fine immagine di copertina -->
+
+                <!-- titolo film -->
+                <div>
                     titolo: {{movie.title}}
-                </span>
+                </div>
+                <!-- fine titolo film -->
 
-                <br> 
-
-                <span v-if="movie.title != movie.original_title">
+                <!-- titolo originale -->
+                <div v-if="movie.title != movie.original_title">
                     titolo originale: {{movie.original_title}}
-                    <br>
-                </span>
+                </div>
+                <!-- fine titolo originale -->
 
-                <span>
-                    lingua originale: {{movie.original_language}} 
-                </span>
+                <!-- lingua -->
+                <div>
+                    lingua originale: {{movie.original_language}}
+                </div>
+                <!-- fine lingua -->
 
+                <!-- nazione -->
                 <div class="flag">
                     <img :src="'img/' + movie.original_language + '.svg'" alt="">
                 </div>
+                <!-- fine nazione -->
 
-                <br> 
-
-                <span>voto: {{movie.vote_average}} /5</span>
+                <!-- voto -->
                 <div>
-                    <i v-for="star in coloredStars" class="far fa-star"></i>
-
+                    <i v-for="numb in getVote(movie.vote_average)" class="fas fa-star"></i>
                 </div>
-               
-            </li>
-        </ul>
+                <!-- fine voto -->
+
+            </div>
+
+        </div>
 
     </div>
     

@@ -6,18 +6,34 @@
 body{
     font-family: 'Roboto', sans-serif;
 }
+.poster{
+    width: 342px;
+    height: 513px;
+    background-image: url(../img/no-img.png);
+    background-repeat: no-repeat;
+    background-size: 200px;
+    background-position-x: center;
+    background-position-y: center;
+}
 .flag{
-    width: 20px;
     display: inline-block;
     vertical-align: middle;
 }
-ul{
-    display: flex;
-    flex-wrap: wrap;
+.flag img{
+    width: 20px;
+    height: 30px;
+}
+.wrapper{
+    display: flex; 
+    flex-wrap: wrap; 
     text-align: center;
 }
-li{
+.film{
     width: calc( 100% / 4);
     margin-top: 100px;
     list-style-type: none;
+}
+.fa-star{
+    color: orange;
+    
 }
