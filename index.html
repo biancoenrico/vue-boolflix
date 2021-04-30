@@ -16,11 +16,16 @@
     
     <div id="root">
 
-        <div>
-            <input v-on:keyup.enter="searchMulti" type="text" v-model="search" name="" id="">
-            <button @click="searchMulti">film</button>
-
-        </div>
+        <header>
+            <div class="boolflix">
+                <img src="https://fontmeme.com/permalink/210430/0a43aa36584f2895324a0006b42b5d1a.png" alt="">
+            </div>
+            <div>
+                <label for="search">search film:</label>
+                <input v-on:keyup.enter="searchMulti" type="text" v-model="search" name="" id="search">
+            <!-- <button @click="searchMulti">film</button> -->
+            </div>
+        </header>
         
         <div class="wrapper">
 
@@ -29,35 +34,43 @@
                 <img class="poster" :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path" alt="">
                 <!-- fine immagine di copertina -->
 
-                <!-- titolo film -->
-                <div>
-                    titolo: {{movie.title}}
-                </div>
-                <!-- fine titolo film -->
+                <div class="info">
+                        <!-- titolo film -->
+                    <div>
+                        titolo: {{movie.title}}
+                    </div>
+                    <!-- fine titolo film -->
 
-                <!-- titolo originale -->
-                <div v-if="movie.title != movie.original_title">
-                    titolo originale: {{movie.original_title}}
-                </div>
-                <!-- fine titolo originale -->
+                    <!-- titolo originale -->
+                    <div v-if="movie.title != movie.original_title">
+                        titolo originale: {{movie.original_title}}
+                    </div>
+                    <!-- fine titolo originale -->
 
-                <!-- lingua -->
-                <div>
-                    lingua originale: {{movie.original_language}}
-                </div>
-                <!-- fine lingua -->
+                    <!-- lingua -->
+                    <div>
+                        lingua originale: {{movie.original_language}}
+                    </div>
+                    <!-- fine lingua -->
 
-                <!-- nazione -->
-                <div class="flag">
-                    <img :src="'img/' + movie.original_language + '.svg'" alt="">
-                </div>
-                <!-- fine nazione -->
+                    <!-- nazione -->
+                    <div class="flag">
+                        <img :src="'img/' + movie.original_language + '.svg'" alt="">
+                    </div>
+                    <!-- fine nazione -->
 
-                <!-- voto -->
-                <div>
-                    <i v-for="numb in getVote(movie.vote_average)" class="fas fa-star"></i>
+                    <!-- voto -->
+                    <div>
+                        <i v-for="numb in getVote(movie.vote_average)" class="fas fa-star"></i>
+                    </div>
+                    <!-- fine voto -->
+
+                    <!-- overview -->
+                    <div>
+                        overview: {{movie.overview}}
+                    </div>
+                    <!-- fine overview -->
                 </div>
-                <!-- fine voto -->
 
             </div>
 

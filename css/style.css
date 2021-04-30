@@ -5,6 +5,33 @@
 }
 body{
     font-family: 'Roboto', sans-serif;
+    background-color: #141414;
+}
+header{
+    background-color: black;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+header label{
+    font-size: 18px;
+    color: white;
+    margin-right: 10px;
+}
+header input{
+    margin-right: 100px;
+    padding: 10px 30px 10px 15px;
+    border-radius: 999px;
+    background-color: #141414;
+    outline: none;
+    border: 1px solid lightgray;
+    font-size: 18px;
+    color: white;
+}
+header img{
+    width: 500px;
 }
 .poster{
     width: 342px;
@@ -28,12 +55,27 @@ body{
     flex-wrap: wrap; 
     text-align: center;
 }
+.fa-star{
+    color: orange;
+}
 .film{
     width: calc( 100% / 4);
     margin-top: 100px;
     list-style-type: none;
+    position: relative;
 }
-.fa-star{
-    color: orange;
-    
+.info{
+    position: absolute;
+    background-color: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 342px;
+    height: 520px;
+    color: white;
+    padding-top: 50px;
+    display: none;
+}
+.film:hover .info{
+    display: block;
 }

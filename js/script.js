@@ -2,7 +2,7 @@ var app = new Vue({
     el: '#root',
     data: {
         resultMulti:[],
-        search:'ciao',
+        search:'',
     },
     methods: {
         
@@ -26,6 +26,7 @@ var app = new Vue({
                 this.resultMulti = list.results;
             this.search = '';
         })  
+
         }, 
     },
     mounted(){
