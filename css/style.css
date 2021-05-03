@@ -33,6 +33,10 @@ header input{
 header img{
     width: 200px;
 }
+.select{
+    text-align: center;
+    background-color: black;
+}
 .poster{
     width: 342px;
     height: 513px;

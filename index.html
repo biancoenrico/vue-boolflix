@@ -22,13 +22,19 @@
             </div>
             <div>
                 <label for="search">search film:</label>
-                <input v-on:keyup.enter="searchMulti" type="text" v-model="search" name="" id="search">
+                <input v-on:keyup.enter="searchAll()" type="text" v-model="search" name="" id="search">
             <!-- <button @click="searchMulti">film</button> -->
             </div>
         </header>
         
-        <div class="wrapper">
+        <div class="select">
+            <select id="genreSelect" v-model="genreSelect">
+                <option v-for="(genre , index) in genreArray" @click="selectedGen = index" >{{ genre.name }}{{selectedGen}}</option>
+            </select>
+        </div>
 
+        <div class="wrapper">
+            
             <div  v-for="movie in resultMulti" class="film">
                 <!-- immagine di copertina -->
                 <img class="poster" :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path" alt="">
@@ -66,10 +72,15 @@
                     <!-- fine voto -->
 
                     <!-- overview -->
-                    <div>
+                    <div style="font-size: 12px;">
                         overview: {{movie.overview}}
                     </div>
                     <!-- fine overview -->
+                    <div v-for="genre in genreArray" >
+                        <span>
+                            {{genre.name}}
+                        </span>
+                    </div>
                 </div>
 
             </div>
