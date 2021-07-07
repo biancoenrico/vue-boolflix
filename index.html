@@ -1,95 +1,210 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <link rel="stylesheet" href="css/style.css">
-    <title>boolfix</title>
-</head>
-<body>
-    
-    <div id="root">
 
-        <header>
-            <div class="boolflix">
-                <img src="https://fontmeme.com/permalink/210430/0a43aa36584f2895324a0006b42b5d1a.png" alt="">
-            </div>
-            <div>
-                <label for="search">search film:</label>
-                <input v-on:keyup.enter="searchAll()" type="text" v-model="search" name="" id="search">
-            <!-- <button @click="searchMulti">film</button> -->
-            </div>
-        </header>
-        
-        <div class="select">
-            <select id="genreSelect" v-model="genreSelect">
-                <option v-for="(genre , index) in genreArray" @click="selectedGen = index" >{{ genre.name }}{{selectedGen}}</option>
-            </select>
-        </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <link rel="stylesheet" href="css/style.css">
+        <title>boolfix</title>
+    </head>
 
-        <div class="wrapper">
-            
-            <div  v-for="movie in resultMulti" class="film">
-                <!-- immagine di copertina -->
-                <img class="poster" :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path" alt="">
-                <!-- fine immagine di copertina -->
+    <body>
 
-                <div class="info">
-                        <!-- titolo film -->
-                    <div>
-                        titolo: {{movie.title}}
-                    </div>
-                    <!-- fine titolo film -->
+        <div id="root">
 
-                    <!-- titolo originale -->
-                    <div v-if="movie.title != movie.original_title">
-                        titolo originale: {{movie.original_title}}
-                    </div>
-                    <!-- fine titolo originale -->
-
-                    <!-- lingua -->
-                    <div>
-                        lingua originale: {{movie.original_language}}
-                    </div>
-                    <!-- fine lingua -->
-
-                    <!-- nazione -->
-                    <div class="flag">
-                        <img :src="'img/' + movie.original_language + '.svg'" alt="">
-                    </div>
-                    <!-- fine nazione -->
-
-                    <!-- voto -->
-                    <div>
-                        <i v-for="numb in getVote(movie.vote_average)" class="fas fa-star"></i>
-                    </div>
-                    <!-- fine voto -->
-
-                    <!-- overview -->
-                    <div style="font-size: 12px;">
-                        overview: {{movie.overview}}
-                    </div>
-                    <!-- fine overview -->
-                    <div v-for="genre in genreArray" >
-                        <span>
-                            {{genre.name}}
-                        </span>
-                    </div>
+            <header>
+                <div class="boolflix">
+                    <img src="https://fontmeme.com/permalink/210430/0a43aa36584f2895324a0006b42b5d1a.png" alt="">
                 </div>
 
-            </div>
+                <div>
+                    <select name="" id="">
+                        <option value="">all</option>
+                        <option v-for="item in genres" v-model="genreSelect" value="{{ item.name }}">{{ item.name }}</option>
+                    </select>
+                    <button @click="showGen">
+                        search
+                    </button>
+                </div>
+
+                <div>
+                    <label for="search">search film:</label>
+                    <input v-on:keyup.enter="searchFilms()" type="text" v-model="search" name="" id="search">
+                </div>
+
+            </header>
+
+            <main>
+                <div class="wrapper">
+
+                    <div v-for="item in resultMulti" class="film">
+                        <img class="poster" :src="'https://image.tmdb.org/t/p/w342' + item.poster_path" alt="">
+                        <div class="info">
+                            <!-- titolo film -->
+                            <div>
+                                titolo: {{item.title}}
+                            </div>
+                            <!-- fine titolo film -->
+                    
+                            <!-- titolo originale -->
+                            <div v-if="item.title != item.original_title">
+                                titolo originale: {{item.original_title}}
+                            </div>
+                            <!-- fine titolo originale -->
+                    
+                            <!-- lingua -->
+                            <div>
+                                lingua originale: {{item.original_language}}
+                            </div>
+                            <!-- fine lingua -->
+                    
+                            <!-- nazione -->
+                            <div class="flag">
+                                <img :src="'img/' + item.original_language + '.svg'" alt="">
+                            </div>
+                            <!-- fine nazione -->
+                    
+                            <!-- voto -->
+                            <div>
+                                voto:
+                                <i v-for="numb in getVote(item.vote_average)" class="fas fa-star"></i>
+                            </div>
+                            <!-- fine voto -->
+                    
+                            <!-- overview -->
+                            <div style="font-size: 12px;" class="overview">
+                                overview: {{item.overview}}
+                            </div>
+                            <!-- fine overview -->
+                            <span V-for="item in item.genre">
+                                {{item.name}}
+                            </span>
+                            <div class="cast">
+                                <span V-for="item in item.cast">
+                                    {{item.name}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-for="item in resultSeries" class="film">
+                        <img class="poster" :src="'https://image.tmdb.org/t/p/w342' + item.poster_path" alt="">
+                        <div class="info">
+                            <!-- titolo film -->
+                            <div>
+                                titolo: {{item.title}}
+                            </div>
+                            <!-- fine titolo film -->
+                        
+                            <!-- titolo originale -->
+                            <div v-if="item.title != item.original_title">
+                                titolo originale: {{item.original_title}}
+                            </div>
+                            <!-- fine titolo originale -->
+                        
+                            <!-- lingua -->
+                            <div>
+                                lingua originale: {{item.original_language}}
+                            </div>
+                            <!-- fine lingua -->
+                        
+                            <!-- nazione -->
+                            <div class="flag">
+                                <img :src="'img/' + item.original_language + '.svg'" alt="">
+                            </div>
+                            <!-- fine nazione -->
+                        
+                            <!-- voto -->
+                            <div>
+                                voto:
+                                <i v-for="numb in getVote(item.vote_average)" class="fas fa-star"></i>
+                            </div>
+                            <!-- fine voto -->
+                        
+                            <!-- overview -->
+                            <div style="font-size: 12px;" class="overview">
+                                overview: {{item.overview}}
+                            </div>
+                            <!-- fine overview -->
+                            genre:
+                            <span V-for="item in item.genre">
+                                {{item.name}}
+                            </span>
+                            <div class="cast">
+                                cast:
+                                <span V-for="item in item.cast">
+                                    {{item.name}},
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-for="item in resultMovie" class="film">
+                        <img class="poster" :src="'https://image.tmdb.org/t/p/w342' + item.poster_path" alt="">
+                        <div class="info">
+                            <!-- titolo film -->
+                            <div>
+                                titolo: {{item.title}}
+                            </div>
+                            <!-- fine titolo film -->
+                    
+                            <!-- titolo originale -->
+                            <div v-if="item.title != item.original_title">
+                                titolo originale: {{item.original_title}}
+                            </div>
+                            <!-- fine titolo originale -->
+                    
+                            <!-- lingua -->
+                            <div>
+                                lingua originale: {{item.original_language}}
+                            </div>
+                            <!-- fine lingua -->
+                    
+                            <!-- nazione -->
+                            <div class="flag">
+                                <img :src="'img/' + item.original_language + '.svg'" alt="">
+                            </div>
+                            <!-- fine nazione -->
+                    
+                            <!-- voto -->
+                            <div>
+                                voto:
+                                <i v-for="numb in getVote(item.vote_average)" class="fas fa-star"></i>
+                            </div>
+                            <!-- fine voto -->
+                    
+                            <!-- overview -->
+                            <div style="font-size: 12px;" class="overview">
+                                overview: {{item.overview}}
+                            </div>
+                            <!-- fine overview -->
+                            genre:
+                            <span V-for="item in item.genre">
+                                {{item.name}}
+                            </span>
+                            <br>
+                            
+                            <div class="cast">
+                                cast:
+                                <span V-for="item in item.cast">
+                                    {{item.name}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
 
         </div>
+        <!-- <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script> -->
+        <script src="js/script.js"></script>
+    </body>
 
-    </div>
-    
-    <!-- <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script> -->
-    <script src="js/script.js"></script>
-</body>
 </html>

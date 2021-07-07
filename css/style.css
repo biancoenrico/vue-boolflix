@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+img{
+    width: 100%;
+}
 body{
     font-family: 'Roboto', sans-serif;
     background-color: #141414;
@@ -37,6 +40,16 @@ header img{
     text-align: center;
     background-color: black;
 }
+select{
+    padding: 5px 15px 5px 15px;
+    border-radius: 999px;
+    background-color: #141414;
+    outline: none;
+    border: 1px solid lightgray;
+    font-size: 18px;
+    color: white;
+    margin-bottom: 10px;
+}
 .poster{
     width: 342px;
     height: 513px;
@@ -58,6 +71,7 @@ header img{
     display: flex; 
     flex-wrap: wrap; 
     text-align: center;
+    padding-bottom: 200px;
 }
 .fa-star{
     color: orange;
@@ -82,4 +96,10 @@ header img{
 }
 .film:hover .info{
     display: block;
+}
+.overview{
+    margin-bottom: 20px;
+}
+.cast{
+    margin-top: 20px;
 }
